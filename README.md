@@ -21,7 +21,7 @@
 	- HTTP/HTTPS Requests
 	- Random generator
 	- User Input
-
+	- http://openweathermap.org/api
 
 ## [Task 2](#task2). Надграждане на [Task 1](#task1)
 
