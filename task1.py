@@ -1,6 +1,18 @@
 import requests
- 
-location=input("Enter City Name:")
+def average():
+    strs = [input() for i in range(6)]
+    for i in range(6): 
+        location=strs(i)
+        complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=f24acb33b0bcc507760fec5abaa0313a"
+        api_link=requests.get(complete_api_link)
+        api_data=api_link.json()
+        town_temps=((api_data['main']['temp'])-273.15)
+        sum+=town_temps
+        avg=sum/5
+        print ("Average temperature is ",avg)
+        
+
+location=input()
 complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=f24acb33b0bcc507760fec5abaa0313a"
 api_link=requests.get(complete_api_link)
 api_data=api_link.json()
