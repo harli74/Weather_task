@@ -12,7 +12,7 @@ def createapilinks():
    api_link=requests.get(complete_api_link)
    apilinks.append(api_link)
 createapilinks()
-print (apilinks)
+#print (apilinks)
 def average():
     sum=0
     avg=0
@@ -31,12 +31,10 @@ def  coldest():
    api_data=apilinks[i].json()
    town_temps=((api_data['main']['temp'])-273.15)
    if town_temps<mintemp:mintemp=town_temps
-   if mintemp==town_temps:api_data
-   
-   
-
-   
-#average()
+   if mintemp==town_temps:coldesttown=api_data['name']
+ print("Coldest town is:",coldesttown)
+  
+coldest()
 location=input()
 complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=f24acb33b0bcc507760fec5abaa0313a"
 api_link=requests.get(complete_api_link)
