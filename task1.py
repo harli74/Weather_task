@@ -5,13 +5,13 @@ from tkinter import ttk
 randcodes=[]
 apilinksfromid=[]
 def locationcodes():
-    global randcodes
-    global apilinksfromid
+    br=0
     rnd=random.randint(20,100)
-    for i in range(1000):
-        randcodes.append(random.randint(833,102908597))
+    randcodes=random.sample(range(833, 102908597), 10000) 
+    #for i in range(len(randcodes)):print(randcodes[i])
+        #randcodes.append(random.randint(833,102908597))
     for i in range(rnd):
-        complete_api_link="https://api.openweathermap.org/data/2.5/weather?id="+str(randcodes[i])+"&appid=f24acb33b0bcc507760fec5abaa0313a"
+        complete_api_link="https://api.openweathermap.org/data/2.5/weather?id="+str(randcodes[i])+"&appid=eb26abb859972dffb7a0c0001421729b"
         api_link=requests.get(complete_api_link)
         api_data=api_link.json()
         if api_data['cod']!='404':
@@ -20,6 +20,7 @@ def average():
          tempsum=0
          avg=0
          numberoftowns=len(apilinksfromid)
+  
          for i in range(numberoftowns): 
              api_data=apilinksfromid[i].json()
              town_temps=((api_data['main']['temp'])-273.15)
@@ -36,7 +37,8 @@ def  coldest():
          if mintemp==town_temps:coldesttown=api_data['name']
      return coldesttown  
 def singletowncheck(input):
-    complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+input+"&appid=f24acb33b0bcc507760fec5abaa0313a"
+    location=input
+    complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=eb26abb859972dffb7a0c0001421729b"
     api_link=requests.get(complete_api_link)
     api_data=api_link.json()
     if api_data['cod']=='404':
@@ -47,9 +49,9 @@ def singletowncheck(input):
         hmdt=api_data['main']['humidity']
         return town_temps,weather,hmdt                
 def singletownsearch():
-    temps,weather,hmdt=singletowncheck(modify.get())
-    outputtemp.set("Stats of "+modify.get()+" are :\n Temps:"+str(temps)+"\n Weather: "
-                   +weather+"\n Humidity: "+str(hmdt)+" %")
+    temps1,weather1,hmdt1=singletowncheck(modify.get())
+    outputtemp.set("Stats of "+modify.get()+" are :\n Temps:"+str(temps1)+"\n Weather: "
+                   +weather1+"\n Humidity: "+str(hmdt1)+" %")
 def avgtogui():
     numberoftowns,avg=average()
     outputavg.set("Average temp of "+str(numberoftowns)+" is "+str(avg)+" degrees")
