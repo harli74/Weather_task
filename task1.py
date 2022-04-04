@@ -2,6 +2,7 @@ import requests
 import random
 from tkinter import *
 from tkinter import ttk
+
 randcodes=[]
 apilinksfromid=[]
 
@@ -25,7 +26,7 @@ def average():
              town_temps=((api_data['main']['temp'])-273.15)
              sum+=town_temps
              avg=sum/5
-         print ("Average temperature is ",avg)         
+         return avg       
 def  coldest():
      mintemp=9000
      coldesttown=" "
@@ -34,9 +35,8 @@ def  coldest():
          town_temps=((api_data['main']['temp'])-273.15)
          if town_temps<mintemp:mintemp=town_temps
          if mintemp==town_temps:coldesttown=api_data['name']
-     print("Coldest town is:",coldesttown)  
+     return coldesttown  
 def singletowncheck(input):
-    #location=input()
     complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+input+"&appid=f24acb33b0bcc507760fec5abaa0313a"
     api_link=requests.get(complete_api_link)
     api_data=api_link.json()
@@ -46,33 +46,34 @@ def singletowncheck(input):
         town_temps=((api_data['main']['temp'])-273.15) 
         weather=(api_data['weather'][0]['description'])
         hmdt=api_data['main']['humidity']
-        print("Temp: {}".format(town_temps))
-        print("Weather Description: ",weather)
-        print("Humidity: ",hmdt,'%')
+        return town_temps,weather,hmdt
+        
+        
 #singletowncheck()
+#def averagetogui():
+
 def singletownsearch():
-    print("Stats of "+modify.get()+" are :")
-    singletowncheck(modify.get())
+    temps,weather,hmdt=singletowncheck(modify.get())
+    outputtemp.set("Stats of "+modify.get()+" are :\n Temps:"+str(temps)+"\n Weather: "
+                   +weather+"\n Humidity: "+str(hmdt)+" %")
+    
 appwindow=Tk()
 root=appwindow
+outputtemp=StringVar()
+outputavg=StringVar()
 appwindow.title("City Checker App")
 appwindow.geometry('640x480')
-lblsearch=Label(appwindow,text='Enter City to Find:')
-lblsearch.grid(column=0,row=1)
+lblsearch=Label(appwindow,text='Enter City to Find:').grid(column=0,row=1)
+lblsearch=Label(appwindow,textvariable=outputtemp).grid(column=0,row=2)
 modify=Entry(root)
 modify.grid(column=1, row=1)
-modify.focus_set()
-lblrand_cities = Label(appwindow, text="Random Cities:")
-lblrand_cities.grid(column=0, row=0)
-btn = Button(appwindow, text="Collect Data!",fg="red",command=locationcodes)
-btn.grid(column=1, row=0)
-btn1=Button(appwindow,text="AverageTemps",command=average)
-btn1.grid(column=2,row=0)
-btn2=Button(appwindow,text="Coldest City:",fg="blue",command=coldest)
-btn2.grid(column=3,row=0)
-btn3=Button(appwindow,text="Check City:",fg="black",command=singletownsearch)
-btn3.grid(column=2,row=1)
-btn4=ttk.Button(appwindow, text="Quit", command=root.destroy).grid(column=1, row=5)
+btn3=Button(appwindow,text="Check City:",fg="black",command=singletownsearch).grid(column=2,row=1)
+lblrand_cities = Label(appwindow, text="Random Cities:").grid(column=0, row=0)
+btn = Button(appwindow, text="Collect Data!",fg="red",command=locationcodes).grid(column=1, row=0)
+lblaveragevalue = Label(appwindow, text="Random Cities:").grid(column=0, row=3)
+lblaverageguiresponce=Label(appwindow,textvariable=outputavg).grid(column=2,row=3)
+btn1=Button(appwindow,text="AverageTemps",command=average).grid(column=1,row=3)
+#btn2=Button(appwindow,text="Coldest City:",fg="blue",command=coldest).grid(column=3,row=0)
+btn4=ttk.Button(appwindow, text="Quit", command=root.destroy).grid(column=5, row=5)
 root.mainloop()
 appwindow.mainloop()
-
