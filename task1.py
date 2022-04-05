@@ -33,8 +33,10 @@ def  coldest():
      for i in range(len(apilinksfromid)):
          api_data=apilinksfromid[i].json()
          town_temps=((api_data['main']['temp'])-273.15)
-         if town_temps<mintemp:mintemp=town_temps
-         if mintemp==town_temps:coldesttown=api_data['name']
+         if town_temps<mintemp:
+             mintemp=town_temps
+         if mintemp==town_temps:
+             coldesttown=api_data['name']
      return coldesttown  
 def singletowncheck(input):
     location=input
