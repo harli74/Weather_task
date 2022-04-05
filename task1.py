@@ -1,8 +1,8 @@
 from apifuncs import locationcodes,average,coldest,singletowncheck
 from tkinter import *
-from tkinter import ttk
-randcodes=[]
-apilinksfromid=[]
+from tkinter import ttk 
+#randcodes=[]
+#apilinksfromid=[]
 appwindow=Tk()
 root=appwindow
 modify=Entry(root)
@@ -17,11 +17,13 @@ def singletownsearch():
                    +weather1+"\n Humidity: "+str(hmdt1)+" %")
 
 def avgtogui():
-    numberoftowns,avg=average()
+    numberoftowns=0.0
+    avg=0.0
+    numberoftowns, avg=average()
     outputavg.set("Average temp of "+str(numberoftowns)+" is "+str(avg)+" degrees")
 
 def coldestgui():
-    return "Coldest town is "+coldest()
+    return "Coldest town is "+ coldest()
 
 appwindow.title("City Checker App")
 appwindow.geometry('640x480')
