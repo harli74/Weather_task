@@ -1,8 +1,7 @@
 from apifuncs import locationcodes,average,coldest,singletowncheck
 from tkinter import *
 from tkinter import ttk 
-#randcodes=[]
-#apilinksfromid=[]
+
 appwindow=Tk()
 root=appwindow
 modify=Entry(root)
