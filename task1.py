@@ -19,10 +19,10 @@ def avgtogui():
     numberoftowns=0.0
     avg=0.0
     numberoftowns, avg=average()
-    outputavg.set("Average temp of "+str(numberoftowns)+" is "+str(avg)+" degrees")
+    outputavg.set("Average temp of "+str(numberoftowns)+" cities is "+str(avg)+" degrees")
 
 def coldestgui():
-    return "Coldest town is "+ coldest()
+    outputcoldest.set( "Coldest city is "+ coldest())
 
 appwindow.title("City Checker App")
 appwindow.geometry('640x480')
