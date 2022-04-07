@@ -10,7 +10,7 @@ def locationcodes():
         data = json.load(json_file)
         for i in data:
             randcodes.append(i['id'])
-
+        random.shuffle(randcodes)
     #for i in range(random.randint(0,len(randcodes))): #not using this for the sake of fast runtime
     for i in range(random.randint(20,40)):
         complete_api_link="https://api.openweathermap.org/data/2.5/weather?id="+ str(randcodes[i])+"&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
