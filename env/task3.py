@@ -3,7 +3,7 @@ import random
 import time
 import requests
 import json
-
+from apifuncs import locationcodes,average,coldest,singletowncheck
 codelist=[]
 app=Flask(__name__)
 
