@@ -17,7 +17,8 @@ def locationcodes():
         api_link=requests.get(complete_api_link)
         time.sleep(0.32)
         api_data=api_link.json()
-        apilinksfromid.append(api_data) 
+        apilinksfromid.append(api_data)
+        
     #print (apilinksfromid)
 
 def average():
