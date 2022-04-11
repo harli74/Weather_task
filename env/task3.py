@@ -10,9 +10,6 @@ app=Flask(__name__)
 @app.route('/')
 def index():
     locationcodes()
-    
-    townnumbers,avg=average()
-    coldtown=coldest()
     return render_template('index.html')
 
 @app.route('/singletown', methods=['GET','POST'])
@@ -23,8 +20,9 @@ def check():
                   <h1>Current temperature is {} degrees </h1>
                   <h1>Current weather is {} </h1>
                   <h1>Current humidity is {} % degrees </h1>'''.format(towntemp, weather, hmdt)
+    return '<h1>'
 
-@app.route('/coldesttown', methods='POST')
+@app.route('/coldesttown', methods=['POST'])
 def coldestt():
     coldestt=coldest()
     return '<h1> Coldest town is {} <h1>'.format(coldestt)
