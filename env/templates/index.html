@@ -36,18 +36,30 @@
     </div>
 
     <left class="row">
-        <form method="post" class="col-md-6 col-md-offset-3">
-                <div class="additional-btn-grp">
-                <button id="av" type="button" class="btn btn-primary">Calculate Average</button>
-                <button id="col" type="button" class="btn btn-primary">Calculate Coldest Town</button>
-                </div>
-        </form>
-    </left>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <form2 method="post" class="col-md-6 col-md-offset-3">
+            <div class="additional-btn-grp">
+                <script>
+                    function ShowAndHide() {
+                        var x = document.getElementById('SectionName');
+                        if (x.style.display == 'none') {
+                            x.style.display = 'block';
+                        } else {
+                            x.style.display = 'none';
+                        }
+                    }
+                </script>
+                <button  class="btn btn-primary" onclick="ShowAndHide()">Calculate Average&Coldest</button>
+            </div>
+        </form2>
 
+        <div ID="SectionName" STYLE="display:none" class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h5>Data taken from {{citycount}} random cities worldwide:</h5>
+                <h5>Coldest town is  {{cold}}</h5>
+                <h5>Average temp is {{avg}}</h5>
+            </div>
         </div>
-    </div>
+    </left>
 </body>
 
 </html>

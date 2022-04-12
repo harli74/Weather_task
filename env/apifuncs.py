@@ -8,17 +8,17 @@ randcodes=[]
 def locationcodes():
     with open('city.list.json',encoding='UTF-8') as json_file:
         data = json.load(json_file)
+
         for i in data:
             randcodes.append(i['id'])
         random.shuffle(randcodes)
-    #for i in range(random.randint(0,len(randcodes))): #not using this for the sake of fast runtime
+
     for i in range(random.randint(20,40)):
         complete_api_link="https://api.openweathermap.org/data/2.5/weather?id="+ str(randcodes[i])+"&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
         api_link=requests.get(complete_api_link)
         time.sleep(0.32)
         api_data=api_link.json()
         apilinksfromid.append(api_data) 
-    #print (apilinksfromid)
 
 def average():
          tempsum=0.0
@@ -26,7 +26,6 @@ def average():
          numberoftowns=len(apilinksfromid)
   
          for i in range(numberoftowns):
-
              town_temps=(apilinksfromid[i]['main']['temp'])
              tempsum+=town_temps
 
@@ -35,6 +34,7 @@ def average():
 def coldest():
     mintemp=9000
     coldesttown=" "
+
     for i in range(len(apilinksfromid)):
         town_temps=(apilinksfromid[i]['main']['temp'])
         if apilinksfromid[i]['main']['temp']<mintemp:
@@ -47,10 +47,12 @@ def coldest():
     return coldesttown
  
 def singletowncheck(input):
+
     location=input
     complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
     api_link=requests.get(complete_api_link)
     api_data=api_link.json()
+
     if api_data['cod']=='404':
         print("Wrong city{}",format(location))
     else:
