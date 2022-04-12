@@ -15,8 +15,9 @@ def index():
 @app.route('/singletown', methods=['GET','POST'])
 def check():
     if request.method=='POST':
-        town=request.form['city']
-        towntemp,weather,hmdt=singletowncheck()
+        if(request.form.get('activate')=='activate'):
+            city=request.form.get('srch')
+            towntemp,weather,hmdt=singletowncheck(city)
         return '''
                   <h1>Current temperature is {} degrees </h1>
                   <h1>Current weather is {} </h1>
