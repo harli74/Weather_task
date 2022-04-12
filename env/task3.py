@@ -7,28 +7,28 @@ from apifuncs import locationcodes,average,coldest,singletowncheck
 
 app=Flask(__name__)
 
-@app.route('/')
-def index():
-    locationcodes()
-    return render_template('index.html')
+#@app.route('/')
+#def index():
+    
+    #return render_template('index.html')
 
-@app.route('/singletown', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def check():
+    locationcodes()
     if request.method=='POST':
-        if(request.form.get('srch')!=null):
-            city=request.form.get('srch')
+        #if(request.form.get('srch')!=null):
+            city=request.form.get('city')
             towntemp,weather,hmdt=singletowncheck(city)
-            return '''
-                       <h1>Current temperature is {} degrees </h1>
-                       <h1>Current weather is {} </h1>
-                       <h1>Current humidity is {} % degrees </h1>'''.format(towntemp, weather, hmdt)
-        elif(request.form.get('coldest')=='coldest'):
-            coldestt=coldest()
-            return '<h1> Coldest town is {} <h1>'.format(coldestt)
-        elif(request.form.get('average')=='average'):
-            citycount,avg=average()
-            return '<h1> The average temperature of {} cities is {}'.format(citycount,avg)
-    return render_template('index.html')
+            data1={"city": city,"towntemp": towntemp,"weather": weather,"hmdt": hmdt}
+    
+            return render_template('index.html' , data1=data1)
+        #elif(request.form.get('coldest')=='coldest'):
+            #coldestt=coldest()
+            #return '<h1> Coldest town is {} <h1>'.format(coldestt)
+        #elif(request.form.get('average')=='average'):
+            #citycount,avg=average()
+            #return '<h1> The average temperature of {} cities is {}'.format(citycount,avg)
+    #return render_template('index.html')
 
 #@app.route('/coldesttown', methods=['GET', 'POST'])
 #def coldestt():
