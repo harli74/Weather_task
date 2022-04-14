@@ -1,0 +1,65 @@
+<!Doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <title>Weather:</title>
+</head>
+
+<body>
+
+    <center class="row">
+        <form method="post" class="col-md-6 col-md-offset-3">
+            <div class="input-group">
+                <input type="text" class="form-control" name="city" placeholder="Search">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+         </form>
+    </center>
+    <div class="row">
+        {% if data1.city and data1.towntemp and data1.weather and data1.hmdt %}
+        <div class="col-md-6 col-md-offset-3">
+            <h5>City name : {{data1.city}}</h5>
+            <h5>temp : {{data1.towntemp}}</h5>
+            <h5>weather : {{data1.weather}}</h5>
+            <h5>humidity : {{data1.hmdt}}</h5>
+        </div>
+        {% endif %}
+    </div>
+
+    <left class="row">
+        <form2 method="post" class="col-md-6 col-md-offset-3">
+            <div class="additional-btn-grp">
+                <script>
+                    function ShowAndHide() {
+                        var x = document.getElementById('SectionName');
+                        if (x.style.display == 'none') {
+                            x.style.display = 'block';
+                        } else {
+                            x.style.display = 'none';
+                        }
+                    }
+                </script>
+                <button  class="btn btn-primary" onclick="ShowAndHide()">Calculate Average&Coldest</button>
+            </div>
+        </form2>
+
+        <div ID="SectionName" STYLE="display:none" class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h5>Data taken from {{citycount}} random cities worldwide:</h5>
+                <h5>Coldest town is  {{cold}}</h5>
+                <h5>Average temp is {{avg}}</h5>
+            </div>
+        </div>
+    </left>
+</body>
+
+</html>
