@@ -1,5 +1,4 @@
 from apifuncs import locationcodes,average,coldest,singletowncheck
-from tkinter import *
 from tkinter import ttk 
 
 appwindow=Tk()
