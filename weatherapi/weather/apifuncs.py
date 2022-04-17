@@ -13,8 +13,8 @@ def locationcodes():
         random.shuffle(randcodes)
     #for i in range(random.randint(0,len(randcodes))): #not using this for the sake of fast runtime
     for i in range(random.randint(20,40)):
-        complete_api_link="https://api.openweathermap.org/data/2.5/weather?id="+ str(randcodes[i])+"&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
-        api_link=requests.get(complete_api_link)
+        complete_api_link="https://api.openweathermap.org/data/2.5/weather?id={}&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
+        api_link=requests.get(complete_api_link.format(randcodes[i]))
         time.sleep(0.32)
         api_data=api_link.json()
         apilinksfromid.append(api_data)
@@ -49,8 +49,8 @@ def coldest():
  
 def singletowncheck(input):
     location=input
-    complete_api_link="https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
-    api_link=requests.get(complete_api_link)
+    complete_api_link="https://api.openweathermap.org/data/2.5/weather?q={}&appid=eb26abb859972dffb7a0c0001421729b&units=metric"
+    api_link=requests.get(complete_api_link.format(location))
     api_data=api_link.json()
     if api_data['cod']=='404':
         print("Wrong city{}",format(location))

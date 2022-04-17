@@ -4,10 +4,11 @@ from .apifuncs import locationcodes,average,coldest,singletowncheck
 @csrf_exempt
 def index(request):
     locationcodes()
-    if(request.POST):
-         city=request.form.get('city')
-         towntemp,weather,hmdt=singletowncheck(city)
-         data1={"city": city,"towntemp": towntemp,"weather": weather,"hmdt": hmdt}
-         citycount,avg=average()
-         coldestt=coldest()
-    return render(request, 'weather/index.html', data1, citycount, avg, coldestt)
+    city=request.POST.get('city')
+    print(city)
+    towntemp, weather, hmdt=singletowncheck(city)
+    data1= {"city": city,"towntemp": towntemp,"weather": weather,"hmdt": hmdt}
+    citycount, avg=average()
+    coldestt=coldest()
+    context={"data1": data1, "citycount": citycount, "avg": avg, "coldest":coldestt, }
+    return render(request, 'weather/index.html', {"context": context})
