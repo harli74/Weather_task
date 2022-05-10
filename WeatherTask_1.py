@@ -35,7 +35,14 @@ print("Start")
 with open('city.list.json','r') as f:
     cityData = json.load(f)
 
-print(type(cityData))
+#A= cityData[0]['name']
+#print(A)
+Allcount =0
+for x in range(0,len(cityData)):
+    Allcount+=1
+
+print(Allcount)
+
 cityer = input()
 
 apikey="c9a787290254e2833d876e34bbccb790"
