@@ -32,6 +32,7 @@ import json
 import random
 
 print("Start")
+city = []
 with open('city.list.json','r') as f:
     cityData = json.load(f)
 
@@ -43,26 +44,30 @@ for x in range(0,len(cityData)):
 
 print(Allcount)
 
-cityer = input()
+for x in range(5):
+    randomNumber = random.randrange(0,Allcount)
+    city.append(cityData[randomNumber]['name'])
 
-apikey="c9a787290254e2833d876e34bbccb790"
-URL=f"https://api.openweathermap.org/data/2.5/weather?"
-key = "q="
-end = "&appid="
-apiRequest = URL + key + cityer + end + apikey + '&units=metric'
-ApiOutput = requests.get(apiRequest)
+#cityer = input()
+
+    apikey="c9a787290254e2833d876e34bbccb790"
+    URL=f"https://api.openweathermap.org/data/2.5/weather?"
+    key = "q="
+    end = "&appid="
+    apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
+    ApiOutput = requests.get(apiRequest)
 #Print succesful Access
-print(ApiOutput)
+    #print(ApiOutput)
 
-data = ApiOutput.json()
-Main = data['main']
-Weather = data['weather']
-
-print(f"Weather Report: {Weather[0]['description']}")
-print(f"Temperature is: {Main['temp']}")
-print(f"Humidity is: {Main['humidity']}")
-
-# city = []
+    data = ApiOutput.json()
+    Main = data['main']
+    Weather = data['weather']
+    print(f"Name of the city: {data['name']}")
+    print(f"Weather Report: {Weather[0]['description']}")
+    print(f"Temperature is: {Main['temp']}")
+    print(f"Humidity is: {Main['humidity']}")
+    print(city)
+# 
 
 # for x in range(5):
 
