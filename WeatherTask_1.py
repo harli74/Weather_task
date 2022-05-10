@@ -26,13 +26,19 @@
 
 #apikey: 07cf9f3accb7195ab333a8b337f932d8
 
+from operator import index, indexOf
 import string
+from unicodedata import name
 import requests
 import json
 import random
 
+from youtube_dl import main
+
 print("Start")
 city = []
+cityInfo =[]
+CityTemp =[]
 with open('city.list.json','r') as f:
     cityData = json.load(f)
 
@@ -62,13 +68,17 @@ for x in range(5):
     data = ApiOutput.json()
     Main = data['main']
     Weather = data['weather']
+    cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
+    CityTemp.append(f"{Main['temp']}")
     print(f"Name of the city: {data['name']}")
     print(f"Weather Report: {Weather[0]['description']}")
     print(f"Temperature is: {Main['temp']}")
     print(f"Humidity is: {Main['humidity']}")
     print(city)
-# 
 
+
+#MaxTemp = max(CityTemp)
+print(f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}")
 # for x in range(5):
 
 #      city.append(input())
