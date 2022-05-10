@@ -29,8 +29,13 @@
 import string
 import requests
 import json
+import random
 
 print("Start")
+with open('city.list.json','r') as f:
+    cityData = json.load(f)
+
+print(type(cityData))
 cityer = input()
 
 apikey="c9a787290254e2833d876e34bbccb790"
