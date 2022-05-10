@@ -23,18 +23,32 @@
 # 	- Random generator
 # 	- User Input
 # 	- http://openweathermap.org/api
-import string
 
+#apikey: 07cf9f3accb7195ab333a8b337f932d8
+
+import string
+import requests
+import json
 
 print("Start")
-city = []
+cityer = input()
 
+apikey="c9a787290254e2833d876e34bbccb790"
+URL=f"https://api.openweathermap.org/data/2.5/weather?"
+key = "q="
+end = "&appid="
+apiRequest = URL + key + cityer + end + apikey
+ApiOutput = requests.get(apiRequest)
+print(ApiOutput)
+
+
+city = []
 
 for x in range(5):
 
-    city.append(input())
+     city.append(input())
     
 
 print(city) 
-###### 
+
 
