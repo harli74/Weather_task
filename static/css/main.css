@@ -1,0 +1,59 @@
+header{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 50px;
+}
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    font-size: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+   
+    
+  }
+  .searchBtn{
+    position: fixed;
+    width: 500px;
+    top: 800px;
+  }
+  .searchField{
+    position: fixed;
+    width: 500px;
+    top: 775px;
+  }
+  div{
+    position: fixed;
+    width: 500px;
+    top: 150px;
+    border-radius: 1%;
+    background-color: black;
+    padding: 1px 2px;
+    margin: 8px 0;
+  }
+
+
+  
+  textarea{
+
+    position: fixed;
+    left: 10px;
+    top: 500px;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    font-size: 12px;
+}
