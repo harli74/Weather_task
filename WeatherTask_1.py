@@ -26,8 +26,12 @@
 
 #apikey: 07cf9f3accb7195ab333a8b337f932d8
 
+from audioop import avg
+from multiprocessing.sharedctypes import Value
+from numbers import Number
 from operator import index, indexOf
 import string
+from tokenize import Double
 from unicodedata import name
 import requests
 import json
@@ -69,7 +73,7 @@ for x in range(5):
     Main = data['main']
     Weather = data['weather']
     cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
-    CityTemp.append(f"{Main['temp']}")
+    CityTemp.append(Main['temp'])
     print(f"Name of the city: {data['name']}")
     print(f"Weather Report: {Weather[0]['description']}")
     print(f"Temperature is: {Main['temp']}")
@@ -79,6 +83,8 @@ for x in range(5):
 
 #MaxTemp = max(CityTemp)
 print(f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}")
+AverageTemp = sum(CityTemp) / len(CityTemp)
+print(f"The average Temperature is: {AverageTemp}")
 # for x in range(5):
 
 #      city.append(input())
