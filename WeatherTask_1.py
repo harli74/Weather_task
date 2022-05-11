@@ -87,6 +87,16 @@ AverageTemp = sum(CityTemp) / len(CityTemp)
 print(f"The average Temperature is: {AverageTemp}")
 # for x in range(5):
 
+InputCityName = input()
+ApiInputRequest = URL + key + InputCityName + end + apikey + '&units=metric'
+ApiRequest_Input = requests.get(ApiInputRequest)
+data = ApiRequest_Input.json()
+Main = data['main']
+Weather = data['weather']
+print(f"Name of the city: {data['name']}")
+print(f"Weather Report: {Weather[0]['description']}")
+print(f"Temperature is: {Main['temp']}")
+print(f"Humidity is: {Main['humidity']}")
 #      city.append(input())
     
 
