@@ -42,7 +42,7 @@ print("Start")
 city = []
 cityInfo =[]
 CityTemp =[]
-with open('city.list.json','r') as f:
+with open('Resources/city.list.json','r') as f:
     cityData = json.load(f)
 
 
