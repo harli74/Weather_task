@@ -26,7 +26,6 @@
 
 #apikey: 07cf9f3accb7195ab333a8b337f932d8
 
-from audioop import avg
 from multiprocessing.sharedctypes import Value
 from numbers import Number
 from operator import index, indexOf
@@ -46,8 +45,7 @@ CityTemp =[]
 with open('city.list.json','r') as f:
     cityData = json.load(f)
 
-#A= cityData[0]['name']
-#print(A)
+
 Allcount =0
 for x in range(0,len(cityData)):
     Allcount+=1
@@ -58,16 +56,12 @@ for x in range(5):
     randomNumber = random.randrange(0,Allcount)
     city.append(cityData[randomNumber]['name'])
 
-#cityer = input()
-
     apikey="c9a787290254e2833d876e34bbccb790"
     URL=f"https://api.openweathermap.org/data/2.5/weather?"
     key = "q="
     end = "&appid="
     apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
     ApiOutput = requests.get(apiRequest)
-#Print succesful Access
-    #print(ApiOutput)
 
     data = ApiOutput.json()
     Main = data['main']
@@ -80,12 +74,9 @@ for x in range(5):
     print(f"Humidity is: {Main['humidity']}")
     print(city)
 
-
-#MaxTemp = max(CityTemp)
 print(f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}")
 AverageTemp = sum(CityTemp) / len(CityTemp)
 print(f"The average Temperature is: {AverageTemp}")
-# for x in range(5):
 
 InputCityName = input()
 ApiInputRequest = URL + key + InputCityName + end + apikey + '&units=metric'
@@ -97,9 +88,4 @@ print(f"Name of the city: {data['name']}")
 print(f"Weather Report: {Weather[0]['description']}")
 print(f"Temperature is: {Main['temp']}")
 print(f"Humidity is: {Main['humidity']}")
-#      city.append(input())
-    
-
-# print(city) 
-
 
