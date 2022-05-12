@@ -22,19 +22,14 @@ button {
     font-size: 16px;
     position: relative;
     cursor: pointer;
+    top: 150px;
    
     
   }
-  .searchBtn{
-    position: fixed;
-    width: 500px;
-    top: 800px;
-  }
-  .searchField{
-    position: fixed;
-    width: 500px;
-    top: 775px;
-  }
+ 
+
+  
+  
   div{
     position: fixed;
     width: 500px;

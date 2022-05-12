@@ -10,31 +10,12 @@
 </head>
 <header>City weather generator</header>
 
-<form>
-<div style="display: grid">
 
-    <input type="text"  id="fcity"name=firstcity placeholder="first city">
-
-    <input type="text" id="scity"name=secondcity placeholder="second city">
-
-    <input type="text" id="tcity"name=thirdcity placeholder="third city">
-
-    <input type="text" id="fourcity"name=fourcity placeholder="four city">
-
-    <input type="text" class="form-check-label" id="fivecity"name=fivecity placeholder="five city"></input>
-    <button type="button"  class="btn btn-success">Generate Cities</button> 
-
-    <input type="text" class="searchField" id="fivecity"name=fivecity placeholder="Search specific city"></input>
-    <button type="button" class="searchBtn">search city</button> 
-   
- 
-    
-</div>
-</form>>
 <body>
     
+{% block content %}
 
+{% endblock %}
 
-    {% block body %}{% endblock %}
 </body>
 </html>
