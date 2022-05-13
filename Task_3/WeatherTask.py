@@ -1,9 +1,3 @@
-## [Task 2](#task2). Надграждане на [Task 1](#task1)
-
-# * Да се направи GUI interface със framework по избор:
-# 	* Tkinter - препоръчван за начинаещ
-# 	* Qt - по-сложен и за по-напреднали
-
 from cgitb import text
 from curses import BUTTON1_PRESSED
 from logging import root
