@@ -5,16 +5,20 @@ from encodings import search_function
 import imp
 from multiprocessing import context
 from pyexpat.errors import messages
+from random import random
 from webbrowser import get
 from flask import Flask, flash , render_template ,url_for , request, redirect
 import requests
 import SearchFunc
+import json
+import random
 
 app = Flask(__name__)
 
 city = []
 cityInfo =[]
 CityTemp =[]
+Weather=''
 frm = 0
 apikey="c9a787290254e2833d876e34bbccb790"
 URL=f"https://api.openweathermap.org/data/2.5/weather?"
@@ -43,9 +47,48 @@ def index():
   
 @app.route('/CityGEN',methods=['GET','POST'])
 def CityGenerator():
-    
-    return render_template('GenerateCities.html')  
-    
+    city.clear()
+    cityInfo.clear()
+    CityTemp.clear()
+    with open('Resources/city.list.json','r') as f:
+     cityData = json.load(f)
+
+
+    Allcount =0
+    for x in range(0,len(cityData)):
+     Allcount+=1
+
+    print(Allcount)
+
+    for x in range(5):
+        randomNumber = random.randrange(0,Allcount)
+        city.append(cityData[randomNumber]['name'])
+
+        apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
+        ApiOutput = requests.get(apiRequest)
+        data = ApiOutput.json()
+        Main = data['main']
+        Weather = data['weather']
+
+        cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
+        CityTemp.append(Main['temp'])
+
+        print(f"Name of the city: {data['name']}")
+        print(f"Weather Report: {Weather[0]['description']}")
+        print(f"Temperature is: {Main['temp']}")
+        print(f"Humidity is: {Main['humidity']}")
+        print(city)
+       
+       
+    if request.method=="GET":
+        coldestCityOutput=f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}"
+        AverageTemp = f"The average temperature is: {sum(CityTemp) / len(CityTemp)}"
+
+        print(coldestCityOutput)
+        print(f"The average Temperature is: {AverageTemp}")
+        return render_template('GenerateCities.html',AverageTemp=AverageTemp,coldestCityOutput=coldestCityOutput,cityInfo=cityInfo,CityTemp=CityTemp)  
+    else:
+        return render_template('GenerateCities.html') 
 @app.route('/CitySearch',methods=['GET','POST'])
 def CitySearch():
      if request.method=="POST":
