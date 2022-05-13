@@ -9,7 +9,6 @@ from random import random
 from webbrowser import get
 from flask import Flask, flash , render_template ,url_for , request, redirect
 import requests
-import SearchFunc
 import json
 import random
 
@@ -72,20 +71,9 @@ def CityGenerator():
 
         cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
         CityTemp.append(Main['temp'])
-
-        print(f"Name of the city: {data['name']}")
-        print(f"Weather Report: {Weather[0]['description']}")
-        print(f"Temperature is: {Main['temp']}")
-        print(f"Humidity is: {Main['humidity']}")
-        print(city)
-       
-       
     if request.method=="GET":
         coldestCityOutput=f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}"
         AverageTemp = f"The average temperature is: {sum(CityTemp) / len(CityTemp)}"
-
-        print(coldestCityOutput)
-        print(f"The average Temperature is: {AverageTemp}")
         return render_template('GenerateCities.html',AverageTemp=AverageTemp,coldestCityOutput=coldestCityOutput,cityInfo=cityInfo,CityTemp=CityTemp)  
     else:
         return render_template('GenerateCities.html') 
@@ -93,7 +81,6 @@ def CityGenerator():
 def CitySearch():
      if request.method=="POST":
         data = request.form.get('Search')
-        print(data)
         ApiInputRequest = URL + key + data + end + apikey + '&units=metric'
         ApiRequest_Input = requests.get(ApiInputRequest)
         dataweather = ApiRequest_Input.json()
