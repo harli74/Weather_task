@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container px-1 px-sm-4 py-5 mx-auto" >
+    <div class="row d-flex justify-content-center">
+        <div class="card text-center pt-4 border-0" >
+            <h4 class="mb-0">{{saveData}}</h4>
+            <small class="text-muted mb-3">rain humidity: {{temp}}%</small>
+            <h2 class="large-font">-32&#176;</h2>
+            <div class="text-center mt-3 mb-4">
+                <img class="city-symbol" src="https://i.imgur.com/QA63I0q.png">
+            </div>
+          
+        </div>
+    </div>
+ </div>
+{% endblock %}
