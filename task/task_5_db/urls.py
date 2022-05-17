@@ -20,4 +20,5 @@ from task_5 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , views.main_def),
+    path('search/', views.searchTab),
 ]
