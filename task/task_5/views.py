@@ -28,14 +28,19 @@ def main_def(request):
    # print(test_print)
     return render(request, 'home.html')
 
+
+
+
+
 def searchTab(request):
-   
+ 
+
     dataLenht = Cities.objects.count()
     print(cities_db_info)
     dataLenht = Cities.objects.count()
     nameData = request.POST.get('Search')
     print(nameData)
-    btnRefresh = request.GET.get('btnRefresh')
+    btnRefresh = request.POST.get('btnRefresh')
     btnDelete=request.POST.get('btnDelete')
     
     #print(Cities.objects.get(id=206))
@@ -65,7 +70,7 @@ def searchTab(request):
             cities_db_info.clear()
             for x in range(Cities.objects.count()):
                 shanolud= Cities.objects.get(id=x)
-                cities_db_info.append(f"{shanolud.city_name} {shanolud.temperature} {shanolud.humidity} {shanolud.weather}")
+               
                 #append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
                 dataLenht=+1
         elif Cities.objects.all().count()>10:
@@ -85,7 +90,14 @@ def searchTab(request):
         print("refresh")
         refreshcounter(request)
         dataLenht = Cities.objects.count()
-        
+        cities_db_info.clear()
+        for x in range(Cities.objects.count()):
+                shanolud= Cities.objects.get(id=x)
+                cities_db_info.append(f"{shanolud.city_name} {shanolud.temperature} {shanolud.humidity} {shanolud.weather}")
+                #append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
+                dataLenht=+1
+        return render(request,'searchcity.html',{'input_data':nameData,'db_lenght':dataLenht,'city_info':cities_db_info})
+       
     print("Do something")
     #delete all values of the table
     #

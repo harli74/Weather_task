@@ -34,11 +34,28 @@
     <button type="submit" name="btnDelete" value="delete DB" class="btn btn-outline-primary">delete_All</button>
     
    </form>
-
-
+   {% csrf_token %} 
+   <div class="form-overlap">
+      <form name="form" style="display: grid"method = "POST">
+      {% csrf_token %} 
+      <button type ="submit"name="btnRefresh">Refresh</button>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.0}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.1}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.2}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.3}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.4}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.5}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.6}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.7}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.8}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.9}}"/> -->
+      <input type="tel" id="typePhone" class="form-control" value="{{city_info.10}}"
+      
+     </form>
+   
    <form name="form" style="display: grid"method = "POST">
       {% csrf_token %} 
-      <button name="btnRefresh"onclick="myFunction()">Refresh</button>
+      
       
      </form>
   
@@ -63,17 +80,7 @@
 
  </script>
    
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.0}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.1}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.2}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.3}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.4}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.5}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.6}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.7}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.8}}"/>
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.9}}"/> -->
-    <input type="tel" id="typePhone" class="form-control" value="{{city_info.10}}"
+   
     
     
   </div>
