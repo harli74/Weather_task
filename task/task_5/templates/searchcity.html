@@ -26,35 +26,54 @@
    </form>   
  </div>
  
- 
+ {% csrf_token %} 
  <div class="form-outline">
     <p id="demo">Click me.</p>
     <form name="form" style="display: grid"method = "POST">
     {% csrf_token %} 
     <button type="submit" name="btnDelete" value="delete DB" class="btn btn-outline-primary">delete_All</button>
+    
    </form>
-    <button onclick="myFunction()">Refresh</button>
+
+
+   <form name="form" style="display: grid"method = "POST">
+      {% csrf_token %} 
+      <button name="btnRefresh"onclick="myFunction()">Refresh</button>
+      
+     </form>
+  
+  
+      {% csrf_token %} 
+      
+ 
  <script>
  document.getElementById("demo").onclick = function() {myFunction()};
  
  function myFunction() {
+   const cars = ['{{city_info}}'];
 
-    for (let i = 0; i < {{db_lenght}}; i++) {
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "text");
-        x.setAttribute("value", "{{db_all}}");
-         document.body.appendChild(x);
-        }   
+   let text = "";
+   for (let i = 0; i < {{db_lenght}}; i++) {
+   text += cars[i];
+   }
+
+   document.getElementById("demo").innerHTML = text;
+   }   
      
-   document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
- }
+
  </script>
    
-    <!-- <input type="tel" id="typePhone" class="form-control" value=""/>
-    <input type="tel" id="typePhone" class="form-control" value=""/>
-    <input type="tel" id="typePhone" class="form-control" value=""/>
-    <input type="tel" id="typePhone" class="form-control" value=""/>
-  -->
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.0}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.1}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.2}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.3}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.4}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.5}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.6}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.7}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.8}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.9}}"/> -->
+    <input type="tel" id="typePhone" class="form-control" value="{{city_info.10}}"
     
     
   </div>
