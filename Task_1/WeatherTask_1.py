@@ -17,37 +17,37 @@ class CityGenerate(object):
         print("Start")
 
         with open('Resources/city.list.json','r') as f:
-            cityData = json.load(f)
+            city_data = json.load(f)
 
 
-        Allcount =0
-        for x in range(0,len(cityData)):
-            Allcount+=1
+        all_count =0
+        for x in range(0,len(city_data)):
+            all_count+=1
 
-        print(Allcount)
+        print(all_count)
 
         for x in range(5):
-            randomNumber = random.randrange(0,Allcount)
-            city.append(cityData[randomNumber]['name'])
+            random_number = random.randrange(0,all_count)
+            city.append(city_data[random_number]['name'])
 
             
-            apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
-            ApiOutput = requests.get(apiRequest)
+            api_request = URL + key + city[x] + end + apikey + '&units=metric'
+            api_output = requests.get(api_request)
 
-            data = ApiOutput.json()
-            Main = data['main']
-            Weather = data['weather']
-            city_info.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
-            city_temp.append(Main['temp'])
+            data = api_output.json()
+            main = data['main']
+            weather = data['weather']
+            city_info.append(f"{data['name']} {weather[0]['description']} {main['temp']} {main['humidity']}")
+            city_temp.append(main['temp'])
             print(f"Name of the city: {data['name']}")
-            print(f"Weather Report: {Weather[0]['description']}")
-            print(f"Temperature is: {Main['temp']}")
-            print(f"Humidity is: {Main['humidity']}")
+            print(f"Weather Report: {weather[0]['description']}")
+            print(f"Temperature is: {main['temp']}")
+            print(f"Humidity is: {main['humidity']}")
             print(city)
 
         print(f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}")
-        AverageTemp = sum(city_temp) / len(city_temp)
-        print(f"The average Temperature is: {AverageTemp}")
+        average_temp = sum(city_temp) / len(city_temp)
+        print(f"The average Temperature is: {average_temp}")
         return object()
 
 
