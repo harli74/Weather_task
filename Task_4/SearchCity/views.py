@@ -4,15 +4,13 @@ import requests
 import json
 import random
 city = []
-cityInfo =[]
-CityTemp =[]
-Weather=''
-frm = 0
+city_info =[]
+city_temp =[]
 apikey="c9a787290254e2833d876e34bbccb790"
 URL=f"https://api.openweathermap.org/data/2.5/weather?"
 key = "q="
 end = "&appid="
-savedData =[]
+saved_data =[]
 
 
 def home(request):
@@ -21,34 +19,34 @@ def home(request):
 
 
 def searchTAb(request):
-    nameData = request.POST.get('Search')
-    savedData.clear()
-    savedData.append(nameData)
-    print(nameData)
-    ApiInputRequest = f"{URL}{key}{nameData}{end}{apikey}&units=metric"
-    ApiRequest_Input = requests.get(ApiInputRequest)
-    dataweather = ApiRequest_Input.json()
-    Main = dataweather['main']
-    Weather = dataweather['weather']
+    name_data = request.POST.get('Search')
+    saved_data.clear()
+    saved_data.append(name_data)
+    print(name_data)
+    api_input_request = f"{URL}{key}{name_data}{end}{apikey}&units=metric"
+    api_request_input = requests.get(api_input_request)
+    data_weather = api_request_input.json()
+    main = data_weather['main']
+    weather = data_weather['weather']
 
    
-    return render(request,'searchcity.html',{'inputData':nameData,'weather':Weather[0]['description'],'dataTemp':Main['temp'],'humidity':Main['humidity']})
+    return render(request,'searchcity.html',{'input_data':name_data,'weather':weather[0]['description'],'data_temp':main['temp'],'humidity':main['humidity']})
     
 def generateTab(request):
     city.clear()
-    cityInfo.clear()
-    CityTemp.clear()
+    city_info.clear()
+    city_temp.clear()
     with open('Resources/city.list.json','r') as f:
-     cityData = json.load(f)
-    Allcount =0
-    for x in range(0,len(cityData)):
-     Allcount+=1
+     city_data = json.load(f)
+    all_count =0
+    for x in range(0,len(city_data)):
+     all_count+=1
 
-    print(Allcount)
+    print(all_count)
 
     for x in range(5):
-        randomNumber = random.randrange(0,Allcount)
-        city.append(cityData[randomNumber]['name'])
+        randomNumber = random.randrange(0,all_count)
+        city.append(city_data[randomNumber]['name'])
 
         apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
         ApiOutput = requests.get(apiRequest)
@@ -56,12 +54,12 @@ def generateTab(request):
         Main = data['main']
         Weather = data['weather']
 
-        cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
-        CityTemp.append(Main['temp'])
+        city_info.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
+        city_temp.append(Main['temp'])
     
-        coldestCityOutput=f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}"
-        AverageTemp = f"The average temperature is: {sum(CityTemp) / len(CityTemp)}"
-    return render(request,'generate.html',{'temp':CityTemp,'cityName':cityInfo,'coldestCity':cityInfo[CityTemp.index(min(CityTemp))],'averageTemp':(sum(CityTemp) / len(CityTemp))})
+        coldest_city_output=f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}"
+        average_temp = f"The average temperature is: {sum(city_temp) / len(city_temp)}"
+    return render(request,'generate.html',{'temp':city_temp,'city_name':city_info,'coldest_city':city_info[city_temp.index(min(city_temp))],'average_temp':(sum(city_temp) / len(city_temp))})
 
 
 # Create your views here.
