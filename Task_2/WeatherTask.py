@@ -1,126 +1,108 @@
-## [Task 2](#task2). Надграждане на [Task 1](#task1)
-
-# * Да се направи GUI interface със framework по избор:
-# 	* Tkinter - препоръчван за начинаещ
-# 	* Qt - по-сложен и за по-напреднали
-
-from cgitb import text
-from curses import BUTTON1_PRESSED
-from logging import root
-from multiprocessing.sharedctypes import Value
-from numbers import Number
-from operator import index, indexOf, truediv
-import string
-from tokenize import Double
-from turtle import left, position
-
-
-from unicodedata import name
-from click import command
 import requests
 import json
 import random
 from tkinter import *
 from tkinter import ttk
 
-
-
-#buttonGenerator = ttk.Button(root,command=generateCities,text="Generate 5 Random Cities").place(x=5,y=50)
-
-# ttk.Label(root, text="City1").grid(column=20, row=0)
-# ttk.Label(root, text="City2").grid(column=20, row=1)
-# ttk.Label(root, text="City3").grid(column=20, row=2)
-# ttk.Label(root, text="City4").grid(column=20, row=3)
-# ttk.Label(root, text="City5").grid(column=20, row=4)
-
-#ttk.Entry(frm, text="City5").grid(column=20, row=4),Place("200x200")
-
-#ttk.Button(frm, text="Quit", command=root.destroy).grid(column=40, row=40)
-
+from youtube_dl import main
 
 city = []
-cityInfo =[]
-CityTemp =[]
-frm = 0
+city_info =[]
+city_temp =[]
+
 apikey="c9a787290254e2833d876e34bbccb790"
 URL=f"https://api.openweathermap.org/data/2.5/weather?"
 key = "q="
 end = "&appid="
-print("Start")
-def clear_widget_text(widget):
-    widget['text'] = ""
+class CityGenerate(object):
+
+    def Generate():
+        print("Start")
+
+        with open('Resources/city.list.json','r') as f:
+            city_data = json.load(f)
 
 
-def generateCities():
-    city.clear()
-    cityInfo.clear()
-    CityTemp.clear()
+        all_count =0
+        for x in range(0,len(city_data)):
+            all_count+=1
 
- 
-    with open('Resources/city.list.json','r') as f:
-     cityData = json.load(f)
+        print(all_count)
+
+        for x in range(5):
+            random_number = random.randrange(0,all_count)
+            city.append(city_data[random_number]['name'])
+
+            
+            api_request = URL + key + city[x] + end + apikey + '&units=metric'
+            api_output = requests.get(api_request)
+
+            data = api_output.json()
+            main = data['main']
+            weather = data['weather']
+            city_info.append(f"{data['name']} {weather[0]['description']} {main['temp']} {main['humidity']}")
+            city_temp.append(main['temp'])
+            print(f"Name of the city: {data['name']}")
+            print(f"Weather Report: {weather[0]['description']}")
+            print(f"Temperature is: {main['temp']}")
+            print(f"Humidity is: {main['humidity']}")
+            print(city)
+
+        print(f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}")
+        average_temp = sum(city_temp) / len(city_temp)
+        print(f"The average Temperature is: {average_temp}")
+        return object()
 
 
-    Allcount =0
-    for x in range(0,len(cityData)):
-     Allcount+=1
 
-    print(Allcount)
-
-    for x in range(5):
-        randomNumber = random.randrange(0,Allcount)
-        city.append(cityData[randomNumber]['name'])
-
-        apiRequest = URL + key + city[x] + end + apikey + '&units=metric'
-        ApiOutput = requests.get(apiRequest)
-        data = ApiOutput.json()
-        Main = data['main']
-        Weather = data['weather']
-
-        cityInfo.append(f"{data['name']} {Weather[0]['description']} {Main['temp']} {Main['humidity']}")
-        CityTemp.append(Main['temp'])
-
+class InputCity(object):
+    def Input(input_name):
+        
+        api_input_request = URL + key + input_name + end + apikey + '&units=metric'
+        api_request = requests.get(api_input_request)
+        data = api_request.json()
+        main = data['main']
+        weather = data['weather']
         print(f"Name of the city: {data['name']}")
-        print(f"Weather Report: {Weather[0]['description']}")
-        print(f"Temperature is: {Main['temp']}")
-        print(f"Humidity is: {Main['humidity']}")
-        print(city)
+        print(f"Weather Report: {weather[0]['description']}")
+        print(f"Temperature is: {main['temp']}")
+        print(f"Humidity is: {main['humidity']}")
+        
+        return data
+    
+
+class TkkLogic(InputCity): 
+    
+    def tkk_output(self):
+        
+        def tkk_input():
+            #print(self.main)
+            #print(InputField.get())
+            #InputCity.Input(InputField.get())
+            c = InputCity.Input(InputField.get())
+            print(c)
+            cityLabelFind = ttk.Label(root,text=f"city name: {c['name']} weather report: {c['weather'][0]['description']} temperature: {c['main']['temp']} humidity is: {c['main']['humidity']}").place(x=50,y=350)
+            
+                
+        root = Tk()
+        root.geometry("400x400"),root.maxsize(800,400),root.minsize(800,400)
+        for x in range(5):
+            ttk.Label(root,text=f"{city_info[x]}").grid(column=0, row=round(x))
+        ttk.Label(root,text=f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}").grid(column=0,row=6)
+        average_temp = sum(city_temp) / len(city_temp)
+        ttk.Label(root,text=f"The average Temperature is: {average_temp}").grid(column=0,row=7)
+        #return
        
-        ttk.Label(root,text=f"City name: {data['name']} Weather is: {Weather[0]['description']} Temperature: {Main['temp']} Humidity: {Main['humidity']}").grid(column=0, row=round(x))
 
-    print(f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}")
-    AverageTemp = sum(CityTemp) / len(CityTemp)
-    print(f"The average Temperature is: {AverageTemp}")
-    ttk.Label(root,text=f"The coldest city is: {cityInfo[CityTemp.index(min(CityTemp))]}").grid(column=0,row=6)
-    ttk.Label(root,text=f"The average Temperature is: {AverageTemp}").grid(column=0,row=7)
-
-def CityInputDef(citynameInput):
-    
-   #InputCityName = input()
-    
-    ApiInputRequest = URL + key + citynameInput + end + apikey + '&units=metric'
-    ApiRequest_Input = requests.get(ApiInputRequest)
-    data = ApiRequest_Input.json()
-    Main = data['main']
-    Weather = data['weather']
-   
-    print(f"Name of the city: {data['name']}")
-    print(f"Weather Report: {Weather[0]['description']}")
-    print(f"Temperature is: {Main['temp']}")
-    print(f"Humidity is: {Main['humidity']}")
-    cityLabelFind = ttk.Label(root,text=f"City name: {data['name']} Weather is: {Weather[0]['description']} Temperature: {Main['temp']} Humidity: {Main['humidity']}").place(x=50,y=350)
-    clear_widget_text(InputField.delete())
-    
-root = Tk()
-root.geometry("400x400"),root.maxsize(800,400),root.minsize(800,400)
-
-def btnClick():
-    CityInputDef(InputField.get())
+        InputField = ttk.Entry(0)
+        InputField.place(x=100,y=300) 
+        InputButton = ttk.Button(root,command=tkk_input,text ="Search city").place(x=5,y=300)
+        root.mainloop()
     
 
-buttonGenerator = ttk.Button(root,command=generateCities,text="Generate 5 Random Cities").place(x=5,y=150)
-InputField = ttk.Entry(frm, text=f"Burgas")
-InputField.place(x=100,y=300)
-InputButton = ttk.Button(root,command=btnClick,text ="Search city").place(x=5,y=300)
+def Execute():
+    CityGenerate.Generate()
+    TkkLogic.tkk_output('')
 
-root.mainloop()
+
+Execute()
