@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+   <body>
+      <form style="display: grid" action = "http://localhost:5000" method = "post">
+        <button type="submit" name="btn_name" value="city_gen" class="btn btn-primary btn-lg">generate cities</button>
+        <button type="submit" name="btn_name" value="input_city" class="btn btn-primary btn-lg">Search</button>
+      </form>   
+   </body>
+</html>
+{% endblock %}
+
+
