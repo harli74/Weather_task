@@ -4,8 +4,6 @@ import random
 from tkinter import *
 from tkinter import ttk
 
-from youtube_dl import main
-
 city = []
 city_info =[]
 city_temp =[]
