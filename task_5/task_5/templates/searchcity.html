@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form style="display: grid" action="http://127.0.0.1:8000/search" method = "post">
+
+   
+
+</form>
+
+{% csrf_token %}
+<div class="input-group">
+   
+   <form name="form" style="display: grid"method = "POST">
+      {% csrf_token %} 
+      
+      <input type="search"  name="Search" value="" class="form-control rounded" placeholder="Type city name" aria-label="Search" aria-describedby="search-addon" />
+      
+      <button type="submit" name="btnName" value="InputCity" class="btn btn-outline-primary">search</button>
+     
+    
+
+      
+      
+
+          
+   </form>   
+ </div>
+ 
+ {% csrf_token %} 
+ <div class="form-outline">
+    <p id="demo">Click me.</p>
+    <form name="form" style="display: grid"method = "POST">
+    {% csrf_token %} 
+    <button type="submit" name="btnDelete" value="delete DB" class="btn btn-outline-primary">delete_All</button>
+    
+   </form>
+   {% csrf_token %} 
+   <div class="form-overlap">
+      <form name="form" style="display: grid"method = "POST">
+      {% csrf_token %} 
+      <button type ="submit"name="btnRefresh">Refresh</button>
+      <input type="tel" id="typePhone" class="form-control" value="id 0: {{city_info.0}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 1: {{city_info.1}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 2: {{city_info.2}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 3: {{city_info.3}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 4: {{city_info.4}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 5: {{city_info.5}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 6: {{city_info.6}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 7: {{city_info.7}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 8: {{city_info.8}}"/>
+      <input type="tel" id="typePhone" class="form-control" value="id 9: {{city_info.9}}"/> -->
+    
+      
+     </form>
+   
+   <form name="form" style="display: grid"method = "POST">
+      {% csrf_token %} 
+      
+      
+     </form>
+     <form style="display: grid" action="http://127.0.0.1:8000/search" method = "post">
+
+   
+
+   </form>
+   
+   {% csrf_token %}
+   <div class="input-group">
+      
+      <form name="form" style="display: grid"method = "POST">
+         {% csrf_token %} 
+         
+         <input type="item1"  name="id_1" value="" class="form-control rounded" placeholder="Type id of city 1" aria-label="Search" aria-describedby="search-addon" />
+         <input type="item2"  name="id_2" value="" class="form-control rounded" placeholder="Type id of city 2" aria-label="Search" aria-describedby="search-addon" />
+         
+         <button type="submit" name="compare" value="InputCity" class="btn btn-outline-primary">compare</button>
+
+       
+         <input type="tel" id="typePhone" class="form-control" value="id 0: {{field1}}"/>
+         <input type="tel" id="typePhone" class="form-control" value="id 1: {{field2}}"/>
+   
+         
+         
+   
+             
+      </form>   
+    </div>
+ 
+ 
+ <script>
+ document.getElementById("demo").onclick = function() {myFunction()};
+ 
+ function myFunction() {
+   const cars = ['{{city_info}}'];
+
+   let text = "";
+   for (let i = 0; i < {{db_lenght}}; i++) {
+   text += cars[i];
+   }
+
+   document.getElementById("demo").innerHTML = text;
+   }   
+     
+
+ </script>
+   
+   
+    
+    
+  </div>
+
+<!-- 
+ {% if inputData %}
+ <div class="container px-1 px-sm-4 py-5 mx-auto" >
+   <div class="row d-flex justify-content-center">
+       <div class="card text-center pt-4 border-0" >
+           <h4 class="mb-0">{{inputData}}</h4>
+           <small class="text-muted mb-3">{{weather}} humidity: {{humidity}}%</small>
+           <h2 class="large-font">{{dataTemp}}&#176;</h2>
+           <div class="text-center mt-3 mb-4">
+               <img class="city-symbol" src="https://i.imgur.com/QA63I0q.png">
+           </div>
+         
+       </div>
+   </div>
+</div>
+
+{% endif %} -->
+
+  
+
+
+
+
+ 
+{% endblock %}

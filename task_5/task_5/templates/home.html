@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+   <div class="home_container">
+        
+        <form name="form"  style="display: grid;top: 200px;"method = "post">
+                {% csrf_token %} 
+                
+                
+                <button type="submit" name="refresh_button"  class="btn btn-outline-primary">refresh</button>
+                 
+                 
+                    
+             </form> 
+  </div>
+
+
+
+
+{% endblock %}
