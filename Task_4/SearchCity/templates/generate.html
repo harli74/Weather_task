@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if temp %}
+   
+
+   
+  <div class="form-outline">
+    <input type="tel" id="typePhone" class="form-control" value="{{city_name.0}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_name.1}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_name.2}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_name.3}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="{{city_name.4}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="Coldest city is: {{coldest_city}}"/>
+    <input type="tel" id="typePhone" class="form-control" value="The average temparature is: {{average_temp}}"/>
+
+    
+    
+  </div>
+
+
+
+{% endif %}
+{% endblock %}
