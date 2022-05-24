@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+   <body>
+      <form style="display: grid" action = "http://localhost:5000/CityGEN" method = "post">
+        
+      </form>   
+      
+        {% if coldest_city_output!=null %}
+        <html>
+   <body>
+      <form style="display: grid" action = "http://localhost:5000" method = "post">
+        <input type="text" class="form-control" id="city1" name="Search5" value="{{ city_info[0] }}">
+        <input type="text" class="form-control" id="city2" name="Search" value="{{ city_info[1] }}">
+        <input type="text" class="form-control" id="city3" name="Search" value="{{ city_info[2] }}">
+        <input type="text" class="form-control" id="city4" name="Search" value="{{ city_info[3] }}">
+        <input type="text" class="form-control" id="city5" name="Search" value="{{ city_info[4] }}">
+        <input type="text" class="form-control" id="city5" name="Search" value="{{ coldest_city_output }}">
+        <input type="text" class="form-control" id="city5" name="Search" value="{{ average_temp }}">
+        
+        
+
+        
+      </form>   
+   </body>
+</html>
+          </script>
+        {% endif %}
+      
+   </body>
+ 
+    
+      
+      
+
+
+{% endblock %}

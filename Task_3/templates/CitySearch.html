@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <form style="display: grid" action="http://localhost:5000/CitySearch" method = "post">
+    <input type="text" class="form-control" id="fero21" name="Search">
+        
+    <button type="submit" name="textCity1" class="btn btn-primary btn-lg">Search</button>
+        
+        
+        {% if data!=null %}
+        <input type="text" class="form-control" id="Fero4" name="Search" value="{{ text_value_1 }}">
+        
+    
+        {% endif %}
+        
+      </form>   
+
+      
+
+{% endblock %}
