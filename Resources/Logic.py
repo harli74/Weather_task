@@ -50,7 +50,7 @@ class CityGenerate(object):
         print(f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}")
         average_temp = sum(city_temp) / len(city_temp)
         print(f"The average Temperature is: {average_temp}")
-        return main
+        return data
 
     def Input(input_city_name):
         
@@ -63,5 +63,5 @@ class CityGenerate(object):
         print(f"Weather Report: {weather[0]['description']}")
         print(f"Temperature is: {main['temp']}")
         print(f"Humidity is: {main['humidity']}")
-        return main
+        return data
 
