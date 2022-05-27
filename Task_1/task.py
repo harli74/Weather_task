@@ -1,4 +1,3 @@
-import resource
 import sys
 sys.path.extend(['Weather_task'])
 import Resources
