@@ -2,6 +2,7 @@ import requests
 import json
 import random
 
+
 city = []
 city_info =[]
 city_temp =[]
@@ -51,11 +52,8 @@ class CityGenerate(object):
         return object()
 
 
-
-class InputCity(object):
-    def Input():
-        input_city_name = input()
-        api_input_request = URL + key + input_city_name + end + apikey + '&units=metric'
+    def Input(input_name):
+        api_input_request = URL + key + input_name + end + apikey + '&units=metric'
         api_request = requests.get(api_input_request)
         data = api_request.json()
         main = data['main']
@@ -68,6 +66,6 @@ class InputCity(object):
 
 def Execute():
     CityGenerate.Generate()
-    InputCity.Input()
+    CityGenerate.Input(input())
 
 Execute()
