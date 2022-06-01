@@ -12,7 +12,7 @@ apikey="c9a787290254e2833d876e34bbccb790"
 URL=f"https://api.openweathermap.org/data/2.5/weather?"
 key = "q="
 end = "&appid="
-class CityGenerate(object):
+class CityGenerate():
 
     def Generate():
         print("Start")
@@ -34,7 +34,6 @@ class CityGenerate(object):
             
             api_request = URL + key + city[x] + end + apikey + '&units=metric'
             api_output = requests.get(api_request)
-
             data = api_output.json()
             main = data['main']
             weather = data['weather']
@@ -49,13 +48,14 @@ class CityGenerate(object):
         print(f"The coldest city is: {city_info[city_temp.index(min(city_temp))]}")
         average_temp = sum(city_temp) / len(city_temp)
         print(f"The average Temperature is: {average_temp}")
-        return object()
+        
 
 
 
-class InputCity(object):
+
     def Input(input_name):
         
+        print("execute?")
         api_input_request = URL + key + input_name + end + apikey + '&units=metric'
         api_request = requests.get(api_input_request)
         data = api_request.json()
@@ -65,22 +65,24 @@ class InputCity(object):
         print(f"Weather Report: {weather[0]['description']}")
         print(f"Temperature is: {main['temp']}")
         print(f"Humidity is: {main['humidity']}")
-        
         return data
-    
-
-class TkkLogic(InputCity): 
-    
-    def tkk_output(self):
         
-        def tkk_input():
-            #print(self.main)
-            #print(InputField.get())
-            #InputCity.Input(InputField.get())
-            c = InputCity.Input(InputField.get())
-            print(c)
-            cityLabelFind = ttk.Label(root,text=f"city name: {c['name']} weather report: {c['weather'][0]['description']} temperature: {c['main']['temp']} humidity is: {c['main']['humidity']}").place(x=50,y=350)
-            
+    
+    def tkk_input(cityName , root):
+        
+        #print(self.main)
+        #print(InputField.get())
+        #InputCity.Input(InputField.get())
+        print(cityName)
+        c = CityGenerate.Input(cityName)
+        print(c)
+        cityLabelFind = ttk.Label(root,text=f"city name: {c['name']} weather report: {c['weather'][0]['description']} temperature: {c['main']['temp']} humidity is: {c['main']['humidity']}").place(x=50,y=350)
+                
+
+    
+    def tkk_output():
+        
+       
                 
         root = Tk()
         root.geometry("400x400"),root.maxsize(800,400),root.minsize(800,400)
@@ -94,13 +96,16 @@ class TkkLogic(InputCity):
 
         InputField = ttk.Entry(0)
         InputField.place(x=100,y=300) 
-        InputButton = ttk.Button(root,command=tkk_input,text ="Search city").place(x=5,y=300)
+        
+  
+        input_button = ttk.Button(root,command=lambda :CityGenerate.tkk_input(InputField.get(),root),text ="Search city").place(x=5,y=300)
+        
         root.mainloop()
     
 
 def Execute():
     CityGenerate.Generate()
-    TkkLogic.tkk_output('')
+    CityGenerate.tkk_output()
 
 
 Execute()
