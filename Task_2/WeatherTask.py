@@ -68,13 +68,10 @@ class CityGenerate():
         return data
         
     
-    def tkk_input(cityName , root):
+    def tkk_input(city_name , root):
         
-        #print(self.main)
-        #print(InputField.get())
-        #InputCity.Input(InputField.get())
-        print(cityName)
-        c = CityGenerate.Input(cityName)
+        print(city_name)
+        c = CityGenerate.Input(city_name)
         print(c)
         cityLabelFind = ttk.Label(root,text=f"city name: {c['name']} weather report: {c['weather'][0]['description']} temperature: {c['main']['temp']} humidity is: {c['main']['humidity']}").place(x=50,y=350)
                 
@@ -94,11 +91,11 @@ class CityGenerate():
         #return
        
 
-        InputField = ttk.Entry(0)
-        InputField.place(x=100,y=300) 
+        input_field = ttk.Entry(0)
+        input_field.place(x=100,y=300) 
         
   
-        input_button = ttk.Button(root,command=lambda :CityGenerate.tkk_input(InputField.get(),root),text ="Search city").place(x=5,y=300)
+        input_button = ttk.Button(root,command=lambda :CityGenerate.tkk_input(input_field.get(),root),text ="Search city").place(x=5,y=300)
         
         root.mainloop()
     
